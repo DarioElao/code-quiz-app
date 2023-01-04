@@ -11,8 +11,8 @@
 </head>
 <body>
    <nav>
-        <p>HIGHSCORES</p>
-        <p>TIMER</p>
+        <p id="tally">HIGHSCORES</p>
+        <p id="timer">TIMER</p>
    </nav>
 
 <main>
@@ -27,18 +27,17 @@
     
 
             
-            <section id="question" class="hide">
-                <h2>Questions</h2>
+            <div id="container" class="hide">
+                <div id="question">Question</div>
                 <div id="answer-buttons" class="button-section"> 
                     <ul>
-                        <li><button class="button">answer 1</button></li>
-                        <li><button class="button">answer 2</button></li>
-                        <li><button class="button">answer 3</button></li>
-                        <li><button class="button">answer 4</button></li>
+                        <li><button id="answ1">answer1</button></li>
+                        <li><button id="answ2">answer2</button></li>
+                        <li><button id="answ3">answer3</button></li>
+                        <li><button id="answ4">answer4</button></li>
                     </ul>
                 </div>
-            </section>
-
+            </div>
 </main>
  
 <script src="./script.js"></script>

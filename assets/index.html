@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./style.css">
     
+    
     <title>Quiz App</title>
 </head>
 <body>
    <nav>
-        <p id="score"> <a href ="highscore.html"></a>HIGHSCORES</p>
+        <p id="score"> 
+        <a href ="./highscore.html">HIGHSCORES</a>
+        </p>
         <p id="timer">TIMER</p>
    </nav>
 
@@ -35,18 +38,23 @@
                         <li><button id="answ2" class="answer">answer2</button></li>
                         <li><button id="answ3" class="answer">answer3</button></li>
                         <li><button id="answ4" class="answer">answer4</button></li>
+                        <p id="alert"></p>
                     </ul>
+                    
                 </div>
             </div>
 
             <div id="score-submit" class="hide">
                 <h3>All Done!</h3>
-                <p id="final"></p>
-                <p>Enter Initials</p><input type="text" id="name" name="name"/>
-                <button id="submit-score">Submit</button>
+                <h4 id="final-score"><h4>
+                <p>Enter Initials</p>
+                <input type="text" id="name"/>
+                <button id="submit">Submit</button>
+                <p id="initials"></p>
             </div>
 </main>
  
+
 <script src="./script.js"></script>
 </body>
 </html>

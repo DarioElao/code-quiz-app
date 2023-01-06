@@ -6,6 +6,11 @@ const answerButton = document.getElementById("answer-buttons");
 const scoreTotal = document.getElementById("score")
 const answerLiBtn = document.querySelectorAll(".answer");
 const submitScore = document.getElementById("score-submit")
+const showAlert = document.getElementById("alert")
+const showUser = document.getElementById("initials")
+const showInitials = document.getElementById("submit")
+
+
 
 const answerEl1 = document.getElementById("answ1");
 const answerEl2 = document.getElementById("answ2");
@@ -29,8 +34,7 @@ let questions = [
     correctOption: "<caption>",
   },
   {
-    question:
-      "What group of tags are used to define the text headers in the body of the HTML document?",
+    question:"What group of tags are used to define the text headers in the body of the HTML document?",
     answer1: "<h1> to <h6>",
     answer2: "<button>",
     answer3: "<td>",
@@ -38,27 +42,42 @@ let questions = [
     correctOption: "<h1> to <h6>",
   },
   {
-    question:
-      "In JavaScript, what element is used to store and manipulate text usually in multiples?",
+    question:"In JavaScript, what element is used to store and manipulate text usually in multiples?",
     answer1: "Arrays",
     answer2: "Functions",
     answer3: "Strings",
     answer4: "Variables",
     correctOption: "Strings",
   },
+  {
+    question:"The link element must go inside the ____ section of an HTML document or page.",
+    answer1: "Footer",
+    answer2: "Body",
+    answer3: "Head",
+    answer4: "Paragraph",
+    correctOption: "Head",
+  },
+  {
+    question:"What is the CSS property that sets the size of the whitespace outside the borders of the content?",
+    answer1: "Spacer",
+    answer2: "Line",
+    answer3: "Margin",
+    answer4: "Block-level",
+    correctOption: "Margin",
+  }
 ];
 
 function startTimer() {
-  count.textContent = time;
+  count.innerHTML = time;
 
   timeInterval = setInterval(function () {
     time--;
-    count.textContent = time;
+    count.innerHTML = time;
 
     if (time <= 0) {
       clearInterval(timeInterval);
       time = 0;
-      count.textContent = time;
+      count.innerHTML = time;
     }
   }, 1000);
 }
@@ -82,6 +101,7 @@ function showQuestion() {
     answerEl4.innerText = questions[currentQuestionIndex].answer4;
   }
 }
+
 function confirmAnswer(answer) {
   let rightAnswer = questions[currentQuestionIndex];
   // console.log(this.innerText)
@@ -94,16 +114,17 @@ function confirmAnswer(answer) {
 
 
   if (answer === rightAnswer.correctOption) {
-    console.log("correct");
+    showAlert.innerHTML = "Previous answer correct!"
     currentQuestionIndex++;
     showQuestion();
   } else if (answer !== rightAnswer.correctOption) {
-    console.log("wrong");
+    showAlert.innerHTML = "Previous answer wrong!"
     time = time - 10
     currentQuestionIndex++;
     showQuestion();
   }
 }
+
 
 answerLiBtn.forEach(function (btn) {
   console.log(btn);
@@ -113,7 +134,7 @@ answerLiBtn.forEach(function (btn) {
     console.log(answer);
     confirmAnswer(answer);
   });
-  //   btn.addEventListener("click",confirmAnswer);
+  //btn.addEventListener("click",confirmAnswer);
 });
 
 startButton.addEventListener("click", function () {
@@ -125,6 +146,24 @@ function endGame(){
     questionContainer.classList.add("hide")
     count.classList.add("hide")
     clearInterval(timeInterval)
-    scoreTotal.innerHTML = "Score : " + time
+    const finalScore = document.getElementById("final-score")
+    finalScore.innerHTML = "Your final score is " + time
     submitScore.classList.remove("hide")
 }
+
+showInitials.addEventListener("click", () => {
+    console.log('ouch')
+    const player = document.getElementById("name").value;
+  const user = player + " " + time
+
+
+let highscores = JSON.parse(localStorage.getItem("highscores")) || []
+
+    
+highscores.push(user)
+
+  localStorage.setItem("highscores", JSON.stringify(highscores))
+
+  window.location.href="highscore.html"
+})
+

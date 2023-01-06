@@ -1,0 +1,45 @@
+*{
+    color: white;
+    font-family: 'Courier New', Courier, monospace
+}
+
+body{
+    background-color: #04041de2;
+}
+
+main{
+    display: grid;
+    height: 50vh;
+    align-content: center;
+    justify-content: center;
+}
+
+h1{
+    margin: 40px 75px;
+    
+}
+
+button{
+    margin-top: 10px;
+}
+
+#highscore{
+    margin: 100px;
+    justify-content: center;
+}
+
+#back, #clear{
+    color: rgb(251, 251, 0);
+    background-color: black;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    
+}
+
+#back:hover, #clear:hover{
+    background-color: white;
+    color: black;
+    transition: transform 150ms;
+    transform: scale(1.1);
+}

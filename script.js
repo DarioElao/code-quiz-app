@@ -1,3 +1,4 @@
+// set variables
 const startButton = document.getElementById("start-button");
 const startHeader = document.getElementById("starter");
 const questionContainer = document.getElementById("container");
@@ -11,13 +12,14 @@ const showUser = document.getElementById("initials")
 const showInitials = document.getElementById("submit")
 
 
-
+// answer buttons variables
 const answerEl1 = document.getElementById("answ1");
 const answerEl2 = document.getElementById("answ2");
 const answerEl3 = document.getElementById("answ3");
 const answerEl4 = document.getElementById("answ4");
 let count = document.getElementById("timer");
 
+//variables for tier and questions count
 let sore = 0
 let time = 60;
 let timeInterval;
@@ -67,6 +69,7 @@ let questions = [
   }
 ];
 
+//start timer function 
 function startTimer() {
   count.innerHTML = time;
 
@@ -82,7 +85,7 @@ function startTimer() {
   }, 1000);
 }
 
-//start quiz app
+//start quiz app and removes first page content
 function startGame() {
   startButton.classList.add("hide");
   startHeader.classList.add("hide");
@@ -90,10 +93,13 @@ function startGame() {
   showQuestion();
 }
 
+//function that displays the question
 function showQuestion() {
+  //if question count reaches its end , endgame ()
   if (currentQuestionIndex === questions.length) {
     endGame()
   } else {
+  //if not , keep searching for next question
     questionElement.innerText = questions[currentQuestionIndex].question;
     answerEl1.innerText = questions[currentQuestionIndex].answer1;
     answerEl2.innerText = questions[currentQuestionIndex].answer2;
@@ -102,21 +108,17 @@ function showQuestion() {
   }
 }
 
+//confirms correct answer
 function confirmAnswer(answer) {
   let rightAnswer = questions[currentQuestionIndex];
   // console.log(this.innerText)
-  console.log(
-    answer,
-    "user answer",
-    rightAnswer.correctOption,
-    "correct answer"
-  );
 
-
+  //if the users picks right answer , display correct message
   if (answer === rightAnswer.correctOption) {
     showAlert.innerHTML = "Previous answer correct!"
     currentQuestionIndex++;
     showQuestion();
+    //if not, display incorrect and reduce timer by 10secs.
   } else if (answer !== rightAnswer.correctOption) {
     showAlert.innerHTML = "Previous answer wrong!"
     time = time - 10
@@ -126,44 +128,50 @@ function confirmAnswer(answer) {
 }
 
 
+//event that confirms users input by clicking the right answer
 answerLiBtn.forEach(function (btn) {
-  console.log(btn);
+  // console.log(btn);
 
   btn.addEventListener("click", (event) => {
     const answer = event.target.innerText;
     console.log(answer);
     confirmAnswer(answer);
-  });
-  //btn.addEventListener("click",confirmAnswer);
-});
+      }
+    );
+  }
+);
 
+//function that starts the quiz app and timer when users clicks on the "START" button
 startButton.addEventListener("click", function () {
   startGame();
   startTimer();
-});
+  }
+);
 
+
+//function that display final page and score
 function endGame(){
     questionContainer.classList.add("hide")
-    count.classList.add("hide")
-    clearInterval(timeInterval)
+      count.classList.add("hide")
+      clearInterval(timeInterval)
     const finalScore = document.getElementById("final-score")
-    finalScore.innerHTML = "Your final score is " + time
-    submitScore.classList.remove("hide")
+      finalScore.innerHTML = "Your final score is " + time
+      submitScore.classList.remove("hide")
 }
 
+//stores users initials in the local storage once the "SUBMIT" button is clicked
 showInitials.addEventListener("click", () => {
-    console.log('ouch')
+    // console.log('clicked')
     const player = document.getElementById("name").value;
-  const user = player + " " + time
+    const user = player + " " + time
 
-
-let highscores = JSON.parse(localStorage.getItem("highscores")) || []
-
-    
-highscores.push(user)
+    //gets data and stores it in local storage
+    let highscores = JSON.parse(localStorage.getItem("highscores")) || []
+    highscores.push(user)
 
   localStorage.setItem("highscores", JSON.stringify(highscores))
 
   window.location.href="highscore.html"
-})
+  }
+)
 

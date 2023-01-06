@@ -28,6 +28,7 @@ button{
     justify-content: center;
 }
 
+/* buttons style */
 #back, #clear{
     color: rgb(251, 251, 0);
     background-color: black;
@@ -37,6 +38,7 @@ button{
     
 }
 
+/* style effect when hovering over buttons */
 #back:hover, #clear:hover{
     background-color: white;
     color: black;
